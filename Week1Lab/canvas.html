@@ -6,12 +6,6 @@
     <meta charset="UTF-8">
     <title>Canvas</title>
 
-    <!--<style type="text/css">
-        canvas {
-            border:2px solid black;
-        }
-    </style>-->
-
   </head>
 
   <body>
@@ -39,14 +33,16 @@
         ctx.fillRect(20, 20, 150, 100);        
         ctx.stroke();	
         
-        //Create second rectangle
+        //Create second rectangle// make int transparent
+        ctx.globalAlpha = 0.2;
         ctx.beginPath();
         ctx.lineWidth = "8";
-        ctx.strokeStyle = "lightGreen";
-        ctx.rect(5, 5, 290, 140);        
+        ctx.fillStyle = "Green";
+        ctx.fillRect(50, 50, 290, 140);        
         ctx.stroke();
 
         //text in the canvas
+        ctx.globalAlpha = 1.0;
         ctx.font = "30px Arial";
         ctx.fillStyle = "blue";
         ctx.textAlign = 'center';
