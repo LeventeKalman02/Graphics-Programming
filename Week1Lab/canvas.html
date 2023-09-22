@@ -6,17 +6,17 @@
     <meta charset="UTF-8">
     <title>Canvas</title>
 
-    <style type="text/css">
+    <!--<style type="text/css">
         canvas {
-            border:2px solid black !important;
+            border:2px solid black;
         }
-    </style>
+    </style>-->
 
   </head>
 
   <body>
 
-    <canvas id="canvasOne"></canvas>
+    <canvas id="canvasOne" width="400" height="400" style="border:2px solid black"></canvas>
 
     <script type="text/javascript">
 
@@ -29,10 +29,21 @@
 		// Set the fill colour to bright red.
 		ctx.strokeStyle = "red";
 
+        //setting X and Y 
+        var x = c.width/2;
+        var y = c.height/2;
+
 		// Create a filled rectangle 
 		ctx.beginPath();
         ctx.rect(20, 20, 150, 100);
-        ctx.stroke();	  
+        ctx.fillStyle = "red";
+        ctx.stroke();	
+        
+        //text in the canvas
+        ctx.font = "30px Arial";
+        ctx.fillStyle = "blue";
+        ctx.textAlign = 'center';
+        ctx.fillText("Levente", x, y);
 		
     </script>
 
