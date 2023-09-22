@@ -7,7 +7,7 @@
   </head>
 
   <body>
-    <canvas id="canvasOne" width="400" height="400" style="border:2px solid black"></canvas>
+    <canvas id="canvasOne" width="500" height="500" style="border:2px solid black"></canvas>
 
     <script type="text/javascript">
 
@@ -57,10 +57,18 @@
 
         //draw circle 2
         ctx.beginPath();
-        ctx.arc(300, 300, 70, 0, 2 * Math.PI, false);
+        ctx.arc(400, 300, 70, 0, 2 * Math.PI, false);
         ctx.strokeStyle = "Brown";
         ctx.stroke();
         ctx.fillStyle = "Orange";
+        ctx.fill();
+
+        //draw a semi-circle
+        ctx.beginPath();
+        ctx.arc(250, 400, 70, 0, Math.PI, false);
+        ctx.strokeStyle = "red";
+        ctx.stroke();
+        ctx.fillStyle = "purple";
         ctx.fill();
 
 		
