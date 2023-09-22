@@ -7,7 +7,9 @@
     <title>Canvas</title>
 
     <style type="text/css">
-	
+        canvas {
+            border:2px solid black !important;
+        }
     </style>
 
   </head>
@@ -20,10 +22,13 @@
 
 		// Gets a handle to the element with id canvasOne.
 		var c = document.getElementById("canvasOne");
+
 		// Set the canvas up for drawing in 2D.
-		ctx = canvas.getContext("2d");
+		var ctx = c.getContext("2d");
+
 		// Set the fill colour to bright red.
 		ctx.strokeStyle = "red";
+
 		// Create a filled rectangle 
 		ctx.beginPath();
         ctx.rect(20, 20, 150, 100);
