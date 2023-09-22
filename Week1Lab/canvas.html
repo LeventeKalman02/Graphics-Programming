@@ -33,12 +33,19 @@
         var x = c.width/2;
         var y = c.height/2;
 
-		// Create a filled rectangle 
+		// Create first filled rectangle 
 		ctx.beginPath();
-        ctx.rect(20, 20, 150, 100);
-        ctx.fillStyle = "red";
+        ctx.fillStyle = "darkGrey";
+        ctx.fillRect(20, 20, 150, 100);        
         ctx.stroke();	
         
+        //Create second rectangle
+        ctx.beginPath();
+        ctx.lineWidth = "8";
+        ctx.strokeStyle = "lightGreen";
+        ctx.rect(5, 5, 290, 140);        
+        ctx.stroke();
+
         //text in the canvas
         ctx.font = "30px Arial";
         ctx.fillStyle = "blue";
