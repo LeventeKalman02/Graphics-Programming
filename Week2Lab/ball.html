@@ -10,14 +10,15 @@
     <style type="text/css">
       body {
           background-color: white;
+          border:2px solid black;
       }
     </style>
 
   </head>
 
   <body>
-
-    <canvas id="canvas-for-ball"></canvas>
+    <h1>Levente Kalman</h1>
+    <canvas id="canvas-for-ball" width="500" height="500"></canvas>
 
     <script type="text/javascript">
       // Gets a handle to the element with id canvasOne.
@@ -29,6 +30,7 @@
       var y = 10;
       // A function to repeat every time the animation loops.
       function repeatme() {
+        ctx.clearRect(0,0,500,500);
         // Draw the ball (stroked, not filled).
         ctx.beginPath();
         ctx.arc(50, y, 3, 0, 2 * Math.PI);
