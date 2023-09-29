@@ -25,15 +25,23 @@
 
         // Get a 2D context for the canvas.
         var ctx = canvas.getContext("2d");
-        
-        //radius
-        var r = 3;
 
-        // The vertical location of the ball.
-        var y = 10;
+        //constructor
+        function ball(x, dx, y, dy, radius, ){
+            //X and Y axis
+            this.x = x;
+            this.speedX = dx;
+            this.y = y;
+            this.speedY = dy;
+            
+            //circle
+            this.r = radius
+            
 
-      //directional speed of the ball.
-        var dy = 3;
+        }
+
+        //declare object
+        const ball1 = new Ball(50, 3, 50, 3, 3);
 
         // A function to repeat every time the animation loops.
         function repeatme() {
@@ -46,8 +54,14 @@
             // Update the y location.
             y += dy;
 
+            //bounce from top to bottom
             if(y + r >= canvas.height || y - r <= 0) {
                 dy = dy*-1;
+            }
+            
+            //bounce left to right
+            if(x + r >= canvas.width || x - r <= 0) {
+                dx = dx*-1;
             }
 
             //When ball hits bottom of canvas invert Y axis
