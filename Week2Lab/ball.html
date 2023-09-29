@@ -20,48 +20,48 @@
     <canvas id="canvas-for-ball" width="500" height="500" style="border: 2px solid black;"></canvas>
 
     <script type="text/javascript">
-        // Gets a handle to the element with id canvasOne.
-        var canvas = document.getElementById("canvas-for-ball");
-
-        // Get a 2D context for the canvas.
-        var ctx = canvas.getContext("2d");
-
         //constructor
-        function ball(x, dx, y, dy, radius, ){
+        function ball(xAxis, xSpeed, yAxis, ySpeed, radius ){
             //X and Y axis
-            this.x = x;
-            this.speedX = dx;
-            this.y = y;
-            this.speedY = dy;
+            this.x = xAxis;
+            this.dx = xSpeed;
+            this.y = yAxis;
+            this.dy = ySpeed;
             
             //circle
-            this.r = radius
+            this.r = radius;
             
 
         }
 
+        // Gets a handle to the element with id canvasOne.
+        var canvas = document.getElementById("canvas-for-ball");
+
+        // Get a 2D context for the canvas.
+        var ctx = canvas.getContext("2d");        
+
         //declare object
-        const ball1 = new Ball(50, 3, 50, 3, 3);
+        const bouncyBall = new ball(50, 3, 10, 5, 3);
 
         // A function to repeat every time the animation loops.
         function repeatme() {
             ctx.clearRect(0,0,canvas.width, canvas.height);
             // Draw the ball (stroked, not filled).
             ctx.beginPath();
-            ctx.arc(50, y, r, 0, 2 * Math.PI, false);
+            ctx.arc(bouncyBall.x, bouncyBall.y, bouncyBall.r, 0, 2 * Math.PI);
             ctx.stroke();
 
             // Update the y location.
-            y += dy;
+            bouncyBall.y += bouncyBall.dy;
 
             //bounce from top to bottom
-            if(y + r >= canvas.height || y - r <= 0) {
-                dy = dy*-1;
+            if(bouncyBall.y + bouncyBall.r >= canvas.height || bouncyBall.y - bouncyBall.r <= 0) {
+                bouncyBall.dy = bouncyBall.dy*-1;
             }
             
             //bounce left to right
-            if(x + r >= canvas.width || x - r <= 0) {
-                dx = dx*-1;
+            if(bouncyBall.x + bouncyBall.r >= canvas.width || bouncyBall.x - bouncyBall.r <= 0) {
+                bouncyBall.dx = bouncyBall.dx*-1;
             }
 
             //When ball hits bottom of canvas invert Y axis
