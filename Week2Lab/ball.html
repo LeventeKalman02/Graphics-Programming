@@ -21,29 +21,43 @@
     <canvas id="canvas-for-ball" width="500" height="500"></canvas>
 
     <script type="text/javascript">
-      // Gets a handle to the element with id canvasOne.
-      var canvas = document.getElementById("canvas-for-ball");
-      // Get a 2D context for the canvas.
-      var ctx = canvas.getContext("2d");
-      
-      // The vertical location of the ball.
-      var y = 10;
-      // A function to repeat every time the animation loops.
-      function repeatme() {
-        ctx.clearRect(0,0,500,500);
-        // Draw the ball (stroked, not filled).
-        ctx.beginPath();
-        ctx.arc(50, y, 3, 0, 2 * Math.PI);
-        ctx.stroke();
+        // Gets a handle to the element with id canvasOne.
+        var canvas = document.getElementById("canvas-for-ball");
+
+        // Get a 2D context for the canvas.
+        var ctx = canvas.getContext("2d");
         
-        // Update the y location.
-        y += 1;
-        
-        window.requestAnimationFrame(repeatme);
+        //radius
+        var r = 3;
+
+        // The vertical location of the ball.
+        var y = 10;
+
+      //directional speed of the ball.
+        var dy = 5;
+
+        // A function to repeat every time the animation loops.
+        function repeatme() {
+            ctx.clearRect(0,0,canvas.width, canvas.height);
+            // Draw the ball (stroked, not filled).
+            ctx.beginPath();
+            ctx.arc(50, y, r, 0, 2 * Math.PI, false);
+            ctx.stroke();
+
+            // Update the y location.
+            y += dy;
+
+            if(y >= canvas.height) {
+                dy = dy*-1;
+            }
+
+            //When ball hits bottom of canvas invert Y axis
+
+            window.requestAnimationFrame(repeatme);
       }
-      
-      // Get the animation going.
-      repeatme();
+        
+        // Get the animation going.
+        repeatme();
     </script>
 
   </body>
