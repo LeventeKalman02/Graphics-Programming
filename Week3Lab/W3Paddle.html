@@ -1,20 +1,94 @@
+<!DOCTYPE html>
+
 <html>
 
-    <body>    
-        <script type ="text/Javascript">
-            class Paddle(){
-                constructor(){
+<head>
+    <meta charset="UTF-8">
+    <title>Canvas</title>
 
+    <style type="text/css">
+        body {
+            background-color: white;
+        }
+    </style>
+
+</head>
+
+<body>
+    <h1>Levente Kalman</h1>
+    <canvas id="canvas-for-ball" width="500" height="500" style="border: 2px solid black;"></canvas>
+
+    <script type="text/javascript">
+        //ball class to have all functions in one location
+        class Ball {
+            constructor(xAxis, xSpeed, yAxis, ySpeed, radius) {
+                //X and Y axis
+                this.x = xAxis;
+                this.dx = xSpeed;
+                this.y = yAxis;
+                this.dy = ySpeed;
+
+                //circle
+                this.r = radius;
+            }
+
+            //draw code moved to class ball
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.r, 0, 2 * Math.PI);
+                ctx.stroke();
+            }
+            //method to move the ball 
+            move() {
+                // Update the y location.
+                this.y += this.dy;
+
+                this.x += this.dx;
+
+                //bounce from top to bottom
+                if (this.y + this.r >= canvas.height || this.y - this.r <= 0) {
+                    this.dy = this.dy * -1;
                 }
 
-                draw(){
-
-                }
-
-                move(){
-                    
+                //bounce left to right
+                if (this.x + this.r >= canvas.width || this.x - this.r <= 0) {
+                    this.dx = this.dx * -1;
                 }
             }
-        </script>
-    </body>
+        }
+
+        class Paddle {
+
+        }
+
+        // Gets a handle to the element with id canvasOne.
+        var canvas = document.getElementById("canvas-for-ball");
+
+        // Get a 2D context for the canvas.
+        var ctx = canvas.getContext("2d");
+
+        //declare object (xaxis, xspeed, yaxis, yspeed, radius)
+        const bouncyBall = new Ball(50, 5, 10, 5, 3);
+        const p1 = new Paddle();
+
+        // A function to repeat every time the animation loops.
+        function repeatme() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            //draw method called from class
+            bouncyBall.draw();
+            //move method called from class
+            bouncyBall.move();
+
+            window.requestAnimationFrame(repeatme);
+        }
+        // Get the animation going.
+        repeatme();
+
+        // event listener code goes here
+
+    </script>
+
+</body>
+
 </html>
