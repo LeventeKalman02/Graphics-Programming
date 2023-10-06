@@ -20,18 +20,39 @@
     <canvas id="canvas-for-ball" width="500" height="500" style="border: 2px solid black;"></canvas>
 
     <script type="text/javascript">
-        //constructor
-        function ball(xAxis, xSpeed, yAxis, ySpeed, radius ){
-            //X and Y axis
-            this.x = xAxis;
-            this.dx = xSpeed;
-            this.y = yAxis;
-            this.dy = ySpeed;
-            
-            //circle
-            this.r = radius;           
-
+      class ball{
+        constructor(xAxis, xSpeed, yAxis, ySpeed, radius ){
+          //X and Y axis
+          this.x = xAxis;
+          this.dx = xSpeed;
+          this.y = yAxis;
+          this.dy = ySpeed;
+          
+          //circle
+          this.r = radius;
         }
+        //draw code moved to class ball
+        draw(){
+          ctx.beginPath();
+            ctx.arc(bouncyBall.x, bouncyBall.y, bouncyBall.r, 0, 2 * Math.PI);
+            ctx.stroke();
+        }
+        //method to move the ball 
+        move(){
+          // Update the y location.
+          bouncyBall.y += bouncyBall.dy;
+
+          //bounce from top to bottom
+          if(bouncyBall.y + bouncyBall.r >= canvas.height || bouncyBall.y - bouncyBall.r <= 0) {
+              bouncyBall.dy = bouncyBall.dy*-1;
+          }
+
+          //bounce left to right
+          if(bouncyBall.x + bouncyBall.r >= canvas.width || bouncyBall.x - bouncyBall.r <= 0) {
+              bouncyBall.dx = bouncyBall.dx*-1;
+          }
+        }
+      }
 
         // Gets a handle to the element with id canvasOne.
         var canvas = document.getElementById("canvas-for-ball");
@@ -45,25 +66,10 @@
         // A function to repeat every time the animation loops.
         function repeatme() {
             ctx.clearRect(0,0,canvas.width, canvas.height);
-            // Draw the ball (stroked, not filled).
-            ctx.beginPath();
-            ctx.arc(bouncyBall.x, bouncyBall.y, bouncyBall.r, 0, 2 * Math.PI);
-            ctx.stroke();
-
-            // Update the y location.
-            bouncyBall.y += bouncyBall.dy;
-
-            //bounce from top to bottom
-            if(bouncyBall.y + bouncyBall.r >= canvas.height || bouncyBall.y - bouncyBall.r <= 0) {
-                bouncyBall.dy = bouncyBall.dy*-1;
-            }
-            
-            //bounce left to right
-            if(bouncyBall.x + bouncyBall.r >= canvas.width || bouncyBall.x - bouncyBall.r <= 0) {
-                bouncyBall.dx = bouncyBall.dx*-1;
-            }
-
-            //When ball hits bottom of canvas invert Y axis
+            //draw method called from class
+            bouncyBall.draw();
+            //move method called from class
+            bouncyBall.move();     
 
             window.requestAnimationFrame(repeatme);
       }
