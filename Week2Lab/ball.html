@@ -20,6 +20,7 @@
     <canvas id="canvas-for-ball" width="500" height="500" style="border: 2px solid black;"></canvas>
 
     <script type="text/javascript">
+      //ball class to have all functions in one location
       class ball{
         constructor(xAxis, xSpeed, yAxis, ySpeed, radius ){
           //X and Y axis
@@ -31,25 +32,28 @@
           //circle
           this.r = radius;
         }
+
         //draw code moved to class ball
         draw(){
           ctx.beginPath();
-            ctx.arc(bouncyBall.x, bouncyBall.y, bouncyBall.r, 0, 2 * Math.PI);
+            ctx.arc(this.x,this.y, this.r, 0, 2 * Math.PI);
             ctx.stroke();
         }
         //method to move the ball 
         move(){
           // Update the y location.
-          bouncyBall.y += bouncyBall.dy;
+          this.y += this.dy;
+
+          this.x += this.dx;
 
           //bounce from top to bottom
-          if(bouncyBall.y + bouncyBall.r >= canvas.height || bouncyBall.y - bouncyBall.r <= 0) {
-              bouncyBall.dy = bouncyBall.dy*-1;
+          if(this.y + this.r >= canvas.height || this.y - this.r <= 0) {
+            this.dy = this.dy*-1;
           }
 
           //bounce left to right
-          if(bouncyBall.x + bouncyBall.r >= canvas.width || bouncyBall.x - bouncyBall.r <= 0) {
-              bouncyBall.dx = bouncyBall.dx*-1;
+          if(this.x + this.r >= canvas.width || this.x - this.r <= 0) {
+            this.dx = this.dx*-1;
           }
         }
       }
@@ -60,8 +64,8 @@
         // Get a 2D context for the canvas.
         var ctx = canvas.getContext("2d");        
 
-        //declare object
-        const bouncyBall = new ball(50, 3, 10, 5, 3);
+        //declare object (xaxis, xspeed, yaxis, yspeed, radius)
+        const bouncyBall = new ball(50, 5, 10, 5, 3);
 
         // A function to repeat every time the animation loops.
         function repeatme() {
