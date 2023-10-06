@@ -20,56 +20,56 @@
 		// Set the fill colour to bright red.
 		ctx.strokeStyle = "red";
 
-        //setting X and Y to center the text in the canvas
-        var x = c.width/2;
-        var y = c.height/2;
+    //setting X and Y to center the text in the canvas
+    var x = c.width/2;
+    var y = c.height/2;
 
 		// Create first filled rectangle 
 		ctx.beginPath();
-        ctx.lineWidth = "4";
-        ctx.fillStyle = "darkGrey";
-        ctx.rect(20, 20, 150, 100);        
-        ctx.fill();
-        ctx.strokeStyle = "purple";
-        ctx.stroke();
-        
-        //Create second filled rectangle // make it transparent
-        ctx.beginPath();
-        ctx.fillStyle = "rgba(255, 0, 0, 0.5)";
-        ctx.rect(50, 50, 290, 140); 
-        ctx.fill();
-        ctx.strokeStyle = "rgba(0, 0, 255, 0.5)";
-        ctx.stroke();
+    ctx.lineWidth = "4";
+    ctx.fillStyle = "darkGrey";
+    ctx.rect(20, 20, 150, 100);        
+    ctx.fill();
+    ctx.strokeStyle = "purple";
+    ctx.stroke();
+    
+    //Create second filled rectangle // make it transparent
+    ctx.beginPath();
+    ctx.fillStyle = "rgba(255, 0, 0, 0.5)";
+    ctx.rect(50, 50, 290, 140); 
+    ctx.fill();
+    ctx.strokeStyle = "rgba(0, 0, 255, 0.5)";
+    ctx.stroke();
 
-        //text in the canvas
-        ctx.font = "30px Arial";
-        ctx.fillStyle = "blue";
-        ctx.textAlign = 'center';
-        ctx.fillText("Levente", x, y);
+    //text in the canvas
+    ctx.font = "30px Arial";
+    ctx.fillStyle = "blue";
+    ctx.textAlign = 'center';
+    ctx.fillText("Levente", x, y);
 
-        //draw circle 1
-        ctx.beginPath();
-        ctx.arc(100, 300, 70, 0, 2 * Math.PI, false);
-        ctx.strokeStyle = "Yellow";
-        ctx.stroke();
-        ctx.fillStyle = "lightRed";
-        ctx.fill();
+    //draw circle 1
+    ctx.beginPath();
+    ctx.arc(100, 300, 70, 0, 2 * Math.PI, false);
+    ctx.strokeStyle = "Yellow";
+    ctx.stroke();
+    ctx.fillStyle = "lightRed";
+    ctx.fill();
 
-        //draw circle 2
-        ctx.beginPath();
-        ctx.arc(400, 300, 70, 0, 2 * Math.PI, false);
-        ctx.strokeStyle = "Brown";
-        ctx.stroke();
-        ctx.fillStyle = "Orange";
-        ctx.fill();
+    //draw circle 2
+    ctx.beginPath();
+    ctx.arc(400, 300, 70, 0, 2 * Math.PI, false);
+    ctx.strokeStyle = "Brown";
+    ctx.stroke();
+    ctx.fillStyle = "Orange";
+    ctx.fill();
 
-        //draw a semi-circle
-        ctx.beginPath();
-        ctx.arc(250, 400, 70, 0, Math.PI, false);
-        ctx.strokeStyle = "red";
-        ctx.stroke();
-        ctx.fillStyle = "purple";
-        ctx.fill();
+    //draw a semi-circle
+    ctx.beginPath();
+    ctx.arc(250, 400, 70, 0, Math.PI, false);
+    ctx.strokeStyle = "red";
+    ctx.stroke();
+    ctx.fillStyle = "purple";
+    ctx.fill();
 
 		
     </script>
