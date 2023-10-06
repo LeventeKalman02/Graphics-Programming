@@ -31,11 +31,11 @@
       ctx.fillStyle = "rgb(255, 0, 0)";
 
       canvas.addEventListener("click", event=> { 
-        const { pageX, pageY, currentTarget } = event;
-        const { left, top } = currentTarget.getBoundingClientRect();
-        const { pageXOffset, pageYOffset } = window;
-        const x = pageX - left - pageXOffset;
-        const y = pageY - top - pageYOffset;
+        const topPos = canvas.offsetTop;
+        const leftPos = canvas.offsetLeft;
+        const x = event.clientX - leftPos;
+        const y = event.clientY - topPos;
+
         ctx.beginPath();        
         ctx.arc(x, y, r, 0, 2 * Math.PI, true);
         ctx.fill();               
