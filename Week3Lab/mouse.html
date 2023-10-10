@@ -24,7 +24,7 @@
     const r = 6;
 
     //creating object from constructor (xaxis, yaxis, radius)
-    const paddle = new Paddle(50, 50, 6);
+    //const paddle = new Paddle(50, 50, 6);
 
     // Gets a handle to the element with id canvasOne.
     var canvas = document.getElementById("canvas-for-ball");
@@ -33,7 +33,7 @@
     // Make the fill style red.
     ctx.fillStyle = "rgb(255, 0, 0)";
 
-    canvas.addEventListener("click", event => {
+    canvas.addEventListener("click", (event) => {
       const topPos = canvas.offsetTop;
       const leftPos = canvas.offsetLeft;
       const x = event.clientX - leftPos;
