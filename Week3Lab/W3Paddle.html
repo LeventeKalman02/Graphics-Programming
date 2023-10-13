@@ -46,19 +46,35 @@
                 this.x += this.dx;
 
                 //bounce from top to bottom
+                //this.r adds the radius to the x axis so it bounces on the edge of the ball rather than the center
                 if (this.y + this.r >= canvas.height || this.y - this.r <= 0) {
                     this.dy = this.dy * -1;
                 }
 
                 //bounce left to right
+                //this.r adds the radius to the x axis so it bounces on the edge of the ball rather than the center
                 if (this.x + this.r >= canvas.width || this.x - this.r <= 0) {
                     this.dx = this.dx * -1;
                 }
             }
         }
-
+        //paddle class
         class Paddle {
-            
+            constructor(){
+
+            }
+            //draw the paddle
+            draw(){
+                ctx.beginPath();
+                ctx.fillStyle = "darkGrey";
+                ctx.rect(20, 20, 20, 100);//rectange(x, y, width, height)          
+                ctx.fill();
+                ctx.stroke();
+            }
+            //move the paddle
+            move(){
+
+            }
         }
 
         // Gets a handle to the element with id canvasOne.
@@ -67,8 +83,10 @@
         // Get a 2D context for the canvas.
         var ctx = canvas.getContext("2d");
 
-        //declare object (xaxis, xspeed, yaxis, yspeed, radius)
+        //declare Ball object (xaxis, xspeed, yaxis, yspeed, radius)
         const bouncyBall = new Ball(50, 5, 10, 5, 3);
+
+        //declare Paddle object()
         const p1 = new Paddle();
 
         // A function to repeat every time the animation loops.
@@ -79,6 +97,9 @@
             bouncyBall.draw();
             //move method called from class
             bouncyBall.move();
+
+            //draw the paddle
+            p1.draw();
 
             window.requestAnimationFrame(repeatme);
         }
