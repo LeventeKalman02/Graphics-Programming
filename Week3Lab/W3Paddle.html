@@ -142,9 +142,18 @@
             const y = event.clientY - topPos;
             //set the paddle Y coordinate to the y coordinate of the mouseclick
             p1.paddleY = y;
-            //p1.draw();
-            console.log(event);
-    });
+            
+            //console.log(event);
+        });
+
+        canvas.addEventListener("mousemove", (event) => {
+            const topPos = canvas.offsetTop + p1.paddleH/2;
+            const y = event.clientY - topPos;
+            //set the paddle Y coordinate to the y coordinate of the mouseclick
+            p1.paddleY = y;
+            
+            //console.log(event);
+        });
     </script>
 
 </body>
