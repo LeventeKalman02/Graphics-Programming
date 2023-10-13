@@ -125,7 +125,6 @@
 				// key code for left arrow
 				case 38://38 is the number assigned to the up arrow by default
 					console.log('UP arrow key pressed!');
-                    p1.paddleY--;
 					break;
 
 				// key code for right arrow
@@ -136,13 +135,14 @@
 			}
 		});
 
+        //mouse event listener to move the paddle with the mouse
         canvas.addEventListener("click", (event) => {
-            // const topPos = canvas.offsetTop;
-            // const leftPos = canvas.offsetLeft;
-            // const x = event.clientX - leftPos;
-            // const y = event.clientY - topPos;
-
-            p1.draw();
+            //calculates the offset + half the paddle so the paddle is centered on the mouse
+            const topPos = canvas.offsetTop + p1.paddleH/2;
+            const y = event.clientY - topPos;
+            //set the paddle Y coordinate to the y coordinate of the mouseclick
+            p1.paddleY = y;
+            //p1.draw();
             console.log(event);
     });
     </script>
