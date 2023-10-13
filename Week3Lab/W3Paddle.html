@@ -99,6 +99,7 @@
 
         //declare Paddle object(xaxis, yaxis, yspeed, width, height)
         const p1 = new Paddle(20, 20, 3, 20, 100);
+        const p2 = new Paddle(460, 20, 3, 20, 100);
 
         // A function to repeat every time the animation loops.
         function repeatme() {
@@ -111,6 +112,7 @@
 
             //draw the paddle
             p1.draw();
+            p2.draw();
 
             window.requestAnimationFrame(repeatme);
         }
@@ -125,12 +127,15 @@
 				// key code for left arrow
 				case 38://38 is the number assigned to the up arrow by default
 					console.log('UP arrow key pressed!');
+                    p1.paddleY--;
+                    p2.paddleY--;
 					break;
 
 				// key code for right arrow
 				case 40://40 is the number assigned to the down arrow by default
 					console.log('DOWN arrow key pressed!');
                     p1.paddleY++;
+                    p2.paddleY++;
 					break;
 			}
 		});
@@ -142,15 +147,18 @@
             const y = event.clientY - topPos;
             //set the paddle Y coordinate to the y coordinate of the mouseclick
             p1.paddleY = y;
+            p2.paddleY = y;
             
-            //console.log(event);
+            // console.log(event);
         });
 
+        //paddle moves along the y axis with the movement of the mouse
         canvas.addEventListener("mousemove", (event) => {
             const topPos = canvas.offsetTop + p1.paddleH/2;
             const y = event.clientY - topPos;
             //set the paddle Y coordinate to the y coordinate of the mouseclick
             p1.paddleY = y;
+            p2.paddleY = y;
             
             //console.log(event);
         });
