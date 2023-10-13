@@ -117,25 +117,34 @@
         // Get the animation going.
         repeatme();
 
-        // event listener code goes here
 		//keypresses with jQuery
         //when up/down arrow pressed move the paddle 
 		$(document.body).on('keydown', (e) => {
 			console.log(e.which);
 			switch (e.which) {
 				// key code for left arrow
-				case 38:
+				case 38://38 is the number assigned to the up arrow by default
 					console.log('UP arrow key pressed!');
                     p1.paddleY--;
 					break;
 
 				// key code for right arrow
-				case 40:
+				case 40://40 is the number assigned to the down arrow by default
 					console.log('DOWN arrow key pressed!');
                     p1.paddleY++;
 					break;
 			}
 		});
+
+        canvas.addEventListener("click", (event) => {
+            // const topPos = canvas.offsetTop;
+            // const leftPos = canvas.offsetLeft;
+            // const x = event.clientX - leftPos;
+            // const y = event.clientY - topPos;
+
+            p1.draw();
+            console.log(event);
+    });
     </script>
 
 </body>
