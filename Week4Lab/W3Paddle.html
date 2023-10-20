@@ -78,14 +78,24 @@
                 ctx.stroke();
             }
             //move the paddle
-            move(){
-                this.paddleY += this.pySpeed;
-
+            stopPaddle(){
                 //stop the paddle if it hits the bottom or top of canvas
                 if (this.paddleY + this.paddleH >= canvas.height || this.paddleY <= 0) {
                     this.pySpeed = 0;
                 }
             }
+
+            moveUp(){
+                if(this.paddleY >= 0){
+                    this.paddleY -= this.pySpeed;
+                }
+            }
+
+            moveDown(){
+                if(this.paddleY <= canvas.height){
+                    this.paddleY += this.pySpeed;
+                }
+            }            
         }
 
         // Gets a handle to the element with id canvasOne.
@@ -98,8 +108,8 @@
         const bouncyBall = new Ball(50, 5, 10, 5, 3);
 
         //declare Paddle object(xaxis, yaxis, yspeed, width, height)
-        const p1 = new Paddle(20, 20, 3, 20, 100);
-        const p2 = new Paddle(460, 20, 3, 20, 100);
+        const p1 = new Paddle(20, 20, 10, 20, 100);
+        const p2 = new Paddle(460, 20, 10, 20, 100);
 
         // A function to repeat every time the animation loops.
         function repeatme() {
@@ -124,18 +134,22 @@
 		$(document.body).on('keydown', (e) => {
 			console.log(e.which);
 			switch (e.which) {
-				// key code for left arrow
+				// key code for up arrow
 				case 38://38 is the number assigned to the up arrow by default
 					console.log('UP arrow key pressed!');
-                    p1.paddleY--;
-                    p2.paddleY--;
+                    p1.moveUp();
+                    p2.moveUp();
+                    //p1.paddleY--;
+                    //p2.paddleY--;
 					break;
 
-				// key code for right arrow
+				// key code for down arrow
 				case 40://40 is the number assigned to the down arrow by default
 					console.log('DOWN arrow key pressed!');
-                    p1.paddleY++;
-                    p2.paddleY++;
+                    p1.moveDown();
+                    p2.moveDown();
+                    //p1.paddleY++;
+                    //p2.paddleY++;
 					break;
 			}
 		});
@@ -148,7 +162,7 @@
             //set the paddle Y coordinate to the y coordinate of the mouseclick
             p1.paddleY = y;
             p2.paddleY = y;
-            
+
             // console.log(event);
         });
 
@@ -159,7 +173,7 @@
             //set the paddle Y coordinate to the y coordinate of the mouseclick
             p1.paddleY = y;
             p2.paddleY = y;
-            
+
             //console.log(event);
         });
     </script>
