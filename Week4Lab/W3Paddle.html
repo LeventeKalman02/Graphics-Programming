@@ -62,28 +62,26 @@
         }
         //paddle class
         class Paddle {
-            constructor(xAxis, yAxis, ySpeed, width, height){
+            constructor(xAxis, yAxis, pRadius, ySpeed){
                 this.paddleX = xAxis;
                 this.paddleY = yAxis;
+                this.paddleR = pRadius;
                 this.pySpeed = ySpeed;
-                this.paddleW = width;
-                this.paddleH = height;
             }
-            //draw the paddle
-            draw(){
+
+            drawCircle(){
                 ctx.beginPath();
-                ctx.fillStyle = "darkGrey";
-                ctx.rect(this.paddleX, this.paddleY, this.paddleW, this.paddleH);//rectange(x, y, width, height)          
-                ctx.fill();
+                ctx.arc(this.paddleX, this.paddleY, this.paddleR, 0, 2 * Math.PI);
                 ctx.stroke();
             }
+
             //move the paddle
-            stopPaddle(){
-                //stop the paddle if it hits the bottom or top of canvas
-                if (this.paddleY + this.paddleH >= canvas.height || this.paddleY <= 0) {
-                    this.pySpeed = 0;
-                }
-            }
+            // stopPaddle(){
+            //     //stop the paddle if it hits the bottom or top of canvas
+            //     if (this.paddleY + this.paddleH >= canvas.height || this.paddleY <= 0) {
+            //         this.pySpeed = 0;
+            //     }
+            // }
 
             moveUp(){
                 if(this.paddleY >= 0){
@@ -105,11 +103,11 @@
         var ctx = canvas.getContext("2d");
 
         //declare Ball object (xaxis, xspeed, yaxis, yspeed, radius)
-        const bouncyBall = new Ball(50, 5, 10, 5, 3);
+        const bouncyBall = new Ball(50, 3, 10, 5, 5);
 
-        //declare Paddle object(xaxis, yaxis, yspeed, width, height)
-        const p1 = new Paddle(20, 20, 10, 20, 100);
-        const p2 = new Paddle(460, 20, 10, 20, 100);
+        //declare Paddle object(xaxis, yaxis, pRadius, yspeed)
+        const p1 = new Paddle(20, 20, 10, 10);
+        const p2 = new Paddle(480, 20, 10, 10);
 
         // A function to repeat every time the animation loops.
         function repeatme() {
@@ -121,8 +119,8 @@
             bouncyBall.move();
 
             //draw the paddle
-            p1.draw();
-            p2.draw();
+            p1.drawCircle();
+            p2.drawCircle();
 
             window.requestAnimationFrame(repeatme);
         }
@@ -152,10 +150,10 @@
 			}
 		});
 
-        //mouse event listener to move the paddle with the mouse
+        //mouse event listener to move the paddle with the mouse click
         canvas.addEventListener("click", (event) => {
             //calculates the offset + half the paddle so the paddle is centered on the mouse
-            const topPos = canvas.offsetTop + p1.paddleH/2;
+            const topPos = canvas.offsetTop + p1.paddleR;
             const y = event.clientY - topPos;
             //set the paddle Y coordinate to the y coordinate of the mouseclick
             p1.paddleY = y;
@@ -166,7 +164,7 @@
 
         //paddle moves along the y axis with the movement of the mouse
         canvas.addEventListener("mousemove", (event) => {
-            const topPos = canvas.offsetTop + p1.paddleH/2;
+            const topPos = canvas.offsetTop + p1.paddleR;
             const y = event.clientY - topPos;
             //set the paddle Y coordinate to the y coordinate of the mouseclick
             p1.paddleY = y;
