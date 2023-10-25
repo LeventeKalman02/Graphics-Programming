@@ -38,6 +38,8 @@
             draw() {
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.r, 0, 2 * Math.PI);
+                ctx.fillStyle = "blue";
+                ctx.fill();
                 ctx.stroke();
             }
             //method to move the ball 
@@ -147,6 +149,23 @@
                     p2.moveDown();
 
 					break;
+
+                //right arrow key to increase the speed of the ball
+                case 39://39 is the number assigned to the right arrow by default
+                    console.log('RIGHT arrow key pressed!');
+                    if(bouncyBall.dx >= -1 && bouncyBall.dy >= 1){//increase the speed both on x and y axis
+                        bouncyBall.dx+= 5;
+                    }
+                    break;
+
+                //left arrow key to decrease the speed of the ball
+                case 37://37 is the number assigned to the left arrow by default
+                    console.log('LEFT arrow key pressed!');
+                    if(bouncyBall.dy >= 1 && bouncyBall.dx >= -1){//decrease the speed both on x and y axis
+                        bouncyBall.dy-= 5;
+                    }
+
+                    break;
 			}
 		});
 
@@ -172,6 +191,7 @@
 
             //console.log(event);
         });
+        
     </script>
 
 </body>
