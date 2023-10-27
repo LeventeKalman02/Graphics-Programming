@@ -111,9 +111,13 @@
         const p1 = new Paddle(40, 20, 20, 10);
         const p2 = new Paddle(460, 20, 20, 10);
 
+        var counter = 100;
+
         // A function to repeat every time the animation loops.
         function repeatme() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);           
+            counter++;
+
 
             //draw method called from class
             bouncyBall.draw();
@@ -133,10 +137,15 @@
             var a2 = p2.paddleY - bouncyBall.y;
             var b2 = p2.paddleX - bouncyBall.x;
 
-            //terminal message to output collision detection
+            //detect the collision of the Paddles and Ball
             if (Math.hypot(a,b) <= d || Math.hypot(a2,b2) <= d2){
+                //terminal message to output collision detection
                 console.log("Collision Detected!");
+                counter = 0;               
             }
+            if(counter <= 45){
+                    ctx.fillText("Collision Detected!", canvas.width/2, canvas.height/2);
+                } 
 
             window.requestAnimationFrame(repeatme);
         }
