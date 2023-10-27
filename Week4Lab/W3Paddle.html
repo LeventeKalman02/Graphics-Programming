@@ -108,8 +108,8 @@
         const bouncyBall = new Ball(50, 3, 10, 5, 5);
 
         //declare Paddle object(xaxis, yaxis, pRadius, yspeed)
-        const p1 = new Paddle(20, 20, 10, 10);
-        const p2 = new Paddle(480, 20, 10, 10);
+        const p1 = new Paddle(40, 20, 20, 10);
+        const p2 = new Paddle(460, 20, 20, 10);
 
         // A function to repeat every time the animation loops.
         function repeatme() {
@@ -123,6 +123,20 @@
             //draw the paddle
             p1.drawCircle();
             p2.drawCircle();
+
+            //variable to define the distance between the ball and paddles
+            var d = p1.paddleR + bouncyBall.r;
+            var d2 = p2.paddleR + bouncyBall.r;
+
+            var a = p1.paddleY - bouncyBall.y;
+            var b = p1.paddleX - bouncyBall.x;
+            var a2 = p2.paddleY - bouncyBall.y;
+            var b2 = p2.paddleX - bouncyBall.x;
+
+            //terminal message to output collision detection
+            if (Math.hypot(a,b) <= d || Math.hypot(a2,b2) <= d2){
+                console.log("Collision Detected!");
+            }
 
             window.requestAnimationFrame(repeatme);
         }
