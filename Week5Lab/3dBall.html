@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+    <!-- importing the three.js library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.js"></script>
 
     <head>
@@ -11,13 +12,33 @@
 
     <body>
         <script type="text/javascript">
-            var scene = new THREE.Scene();
-            var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight , 0.1, 1000);
-           
-            var renderer = new THREE.WebGLRenderer();
+            //creating the scene
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight , 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer();
             renderer.setSize(window.innerWidth, window.innerHeight);
-            document.body.appendChild(renderer.domElement);
+            document.body.appendChild(renderer.domElement);            
 
+
+            //create tetrahedron and add a mesh
+            var geometry = new THREE.TetrahedronGeometry(1,1,1);
+            var material = new THREE.MeshBasicMaterial({color: 0x00ff00});
+            var tetra = new THREE.Mesh(geometry, material);
+
+            scene.add(tetra);
+            camera.position.z = 5;
+            function repeatme(){         
+                //render the scene and camera     
+                renderer.render(scene, camera);
+
+                //add rotation to the tetrahedron
+                tetra.rotation.x +=0.01;
+                tetra.rotation.y +=0.01;
+                window.requestAnimationFrame(repeatme);
+            }
+
+            //start the animation
+            repeatme();
 
 
         </script>
