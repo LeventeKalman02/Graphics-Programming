@@ -19,10 +19,9 @@
             renderer.setSize(window.innerWidth, window.innerHeight);
             document.body.appendChild(renderer.domElement);            
 
-
             //create tetrahedron and add a mesh
             var geometry = new THREE.TetrahedronGeometry(1,50);
-            var material = new THREE.MeshLambertMaterial({color:"red", wireframe:true});
+            var material = new THREE.MeshLambertMaterial({color:"red", wireframe:false});
             var tetra = new THREE.Mesh(geometry, material);
             tetra.castShadow = true;
 
@@ -32,15 +31,37 @@
             spotlight.position.set(5, 10, 5);
             scene.add(spotlight);
 
-            scene.add(tetra);
-            camera.position.z = 5;
+            //class for the tetrahedron 
+            class tetrahedron {
+                constructor(){
+                    this.dx = 0.01;
+                    this.dy = 0.01;
+                    this.dz = 0.01;
+                }
+                //add the tetra to the scene and move the camera out
+                addTetra(){                    
+                    scene.add(tetra);
+                    camera.position.z = 5;
+                }
+
+                //move function to move the tetra
+                moveTetra(){
+                    //add rotation to the tetrahedron
+                    tetra.rotation.x +=0.01;
+                    tetra.rotation.y +=0.01;
+
+                    //move the ball
+                    tetra.position.x += 0.01;
+
+                }
+            }
+
+            //repeatme function for animation
             function repeatme(){         
                 //render the scene and camera     
-                renderer.render(scene, camera);
+                renderer.render(scene, camera);        
 
-                //add rotation to the tetrahedron
-                tetra.rotation.x +=0.01;
-                tetra.rotation.y +=0.01;
+                moveTetra();
                 window.requestAnimationFrame(repeatme);
             }
 
