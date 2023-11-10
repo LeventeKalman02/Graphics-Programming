@@ -32,7 +32,7 @@
             scene.add(spotlight);
 
             //class for the tetrahedron 
-            class tetrahedron {
+            class Tetrahedron {
                 constructor(){
                     this.dx = 0.01;
                     this.dy = 0.01;
@@ -55,13 +55,17 @@
 
                 }
             }
+            //declare the new Tetrahedron from class
+            const Ball = new Tetrahedron();
 
             //repeatme function for animation
             function repeatme(){         
                 //render the scene and camera     
                 renderer.render(scene, camera);        
 
-                moveTetra();
+                //functions from the Tetrahedron class
+                Ball.addTetra();
+                Ball.moveTetra();
                 window.requestAnimationFrame(repeatme);
             }
 
