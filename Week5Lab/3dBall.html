@@ -34,6 +34,7 @@
             //class for the tetrahedron 
             class Tetrahedron {
                 constructor(){
+                    //movement speed in the directions
                     this.dx = 0.01;
                     this.dy = 0.01;
                     this.dz = 0.01;
@@ -51,8 +52,18 @@
                     tetra.rotation.y +=0.01;
 
                     //move the ball
-                    tetra.position.x += 0.01;
+                    tetra.position.x += this.dx;
+                    tetra.position.y += this.dy;               
 
+                    //hardcoded values for width and height because window.innerwidth/innerheight counts in pixels 
+                    //therefore incrementing the position of the tetra by 0.01 it would take forever to hit 2560
+
+                    if(tetra.position.x >= 5 || tetra.position.x <= -5){
+                        this.dx = this.dx * -1;
+                    }
+                    if(tetra.position.y >= 3 || tetra.position.y <= -3){
+                        this.dy = this.dy * -1;
+                    }                   
                 }
             }
             //declare the new Tetrahedron from class
@@ -71,7 +82,6 @@
 
             //start the animation
             repeatme();
-
 
         </script>
     </body>
