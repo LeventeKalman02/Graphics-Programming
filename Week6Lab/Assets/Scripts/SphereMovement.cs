@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShpereMovement : MonoBehaviour
+public class SphereMovement : MonoBehaviour
 {
     //declaring rigidBody
     public Rigidbody rb;
