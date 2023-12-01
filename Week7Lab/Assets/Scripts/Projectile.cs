@@ -12,7 +12,7 @@ public class Projectile : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.V))
         {
-            //this creates the projectile every time the key is pressed
+            //this creates the projectile clone every time the key is pressed
             Rigidbody clone;
             clone = Instantiate(projectile, transform.position, transform.rotation);
 

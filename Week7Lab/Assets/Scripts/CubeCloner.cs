@@ -22,6 +22,7 @@ public class CubeCloner : MonoBehaviour
         {
             Debug.Log("Space key was pressed.");
 
+            //spawns the new cube and tet location
             Instantiate(Cube, new Vector3(0, 1, 0), Quaternion.identity);
             
         }
